@@ -2,11 +2,11 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import load_dotenv
 
 from langchain_core.prompts import PromptTemplate
-from langchain_core.output_parsers import StrOutputParser,ResponseSchema
-from langchain_core.output_parsers import OutputFixingParser
+from langchain_classic.output_parsers import ResponseSchema, StructuredOutputParser, OutputFixingParser
+
 load_dotenv()
 
-model=ChatGoogleGenerativeAI(model="gemini-2.5.-flash")
+model=ChatGoogleGenerativeAI(model="gemini-2.5-flash")
 
 schema=[
     ResponseSchema(name="fact1",description="first fact about black hole"),
@@ -14,9 +14,9 @@ schema=[
     ResponseSchema(name="fact3",description="third fact about black hole")
 ]
 
-parser=StrOutputParser.from_response_schemas(schema)
+parser=StructuredOutputParser.from_response_schemas(schema)
 
-safe_praser=OutputFixingParser.from_llm(llm=model,parser=parser)
+safe_parser=OutputFixingParser.from_llm(llm=model,parser=parser)
 
 template=PromptTemplate(
     template="""

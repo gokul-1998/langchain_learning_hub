@@ -3,7 +3,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import load_dotenv
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import PydanticOutputParser
-from langchain_core.runnables import RunnableBranch,RunnableLambda
+from langchain_core.runnables import RunnableBranch, RunnableLambda, RunnablePassthrough
 from pydantic import BaseModel,Field
 from typing import Literal
 
@@ -25,7 +25,7 @@ prompt1=PromptTemplate(
     partial_variables={"response_format":parser2.get_format_instructions()}
 )
 
-classifier_chain=prompt1 | model | parser2
+classifier_chain=prompt1 | model | parser2 | (lambda x: x.sentiment)
 
 prompt2=PromptTemplate(template="write an appropriate response to this positive feedback {feedback}",
     input_variables=['feedback']
@@ -36,12 +36,12 @@ prompt3=PromptTemplate(template="write an appropriate response to this negative 
 )
 
 branch_chain=RunnableBranch(
-    (lambda x:x.sentiment == "positive",prompt2 | model |  parser),
-    (lambda x:x.sentiment=="negative",prompt3|model|parser),
+    (lambda x: x["sentiment"] == "positive", prompt2 | model | parser),
+    (lambda x: x["sentiment"] == "negative", prompt3 | model | parser),
     RunnableLambda(lambda x: "No valid sentiment found")
 )
 
-chain=classifier_chain | branch_chain
+chain=RunnablePassthrough.assign(sentiment=classifier_chain) | branch_chain
 
 
 result=chain.invoke({"feedback":"The phone is actually horrible. the ui is stuck"})

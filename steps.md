@@ -1,0 +1,2 @@
+- create a `venv`
+-  `pip install langchain_google_genai langchain_community python-dotenv`

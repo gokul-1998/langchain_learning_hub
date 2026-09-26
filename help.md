@@ -1,0 +1,2 @@
+- https://aistudio.google.com/api-keys?project=gen-lang-client-0060464206
+    - use the above link to get gemini api keys

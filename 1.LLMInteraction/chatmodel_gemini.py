@@ -5,7 +5,7 @@ load_dotenv()
 
 
 model=ChatGoogleGenerativeAI(model="gemini-2.5-flash")
-prompt="what is the capital city of USA?"
+prompt="My name is Abhishek, what is your name?"
 
 result=model.invoke(prompt)
 print(result)

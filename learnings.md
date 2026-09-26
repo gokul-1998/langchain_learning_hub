@@ -6,3 +6,5 @@ What is langchain?
  
  - what are the three types of message?
     - system_message, ai_message, human_message
+
+4) what is the need for structured output from llms?

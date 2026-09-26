@@ -1,7 +1,7 @@
 from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import load_dotenv
 from langchain_core.prompts import PromptTemplate
-
+from langchain_core.output_parsers import StrOutputParser
 
 load_dotenv()
 
@@ -12,21 +12,18 @@ model=ChatGoogleGenerativeAI(model="gemini-2.5-flash")
 template1=PromptTemplate(template="Write a detailed report on {topic}",
                         input_variables=['topic']
                         )
-prompt1=template1.invoke({"topic":"English Premier League 2023/2024"})
 
-result1=model.invoke(prompt1).content
-
-print(result1)
-print("*"*50)
-
-# 2nd prompt
 
 template2=PromptTemplate(template="write a 4 point summary on the following {text}",
                         input_variables=["text"]
                         )
 
-prompt2=template2.invoke({"text":str(result1)})
+parser=StrOutputParser()
 
-result=model.invoke(prompt2)
+# chain
+chain=template1 | model | parser | template2 | model | parser
 
-print(result.content)
+
+result=chain.invoke({'topic':"English Premier League 2023/2024"})
+
+print(result)

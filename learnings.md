@@ -8,3 +8,5 @@ What is langchain?
     - system_message, ai_message, human_message
 
 4) what is the need for structured output from llms?
+
+5) `from typing import TypedDict,Annotated,Optional` explain this

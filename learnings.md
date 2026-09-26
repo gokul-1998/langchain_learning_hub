@@ -3,3 +3,6 @@ What is langchain?
     - chatbots, ai-agents, retrieval based app
 
 - ai cant remember our prev convo, so we need to store it in chat messages
+ 
+ - what are the three types of message?
+    - system_message, ai_message, human_message

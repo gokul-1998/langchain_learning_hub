@@ -10,3 +10,5 @@ What is langchain?
 4) what is the need for structured output from llms?
 
 5) `from typing import TypedDict,Annotated,Optional` explain this
+
+6) what are sequential chains

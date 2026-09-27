@@ -12,3 +12,6 @@ What is langchain?
 5) `from typing import TypedDict,Annotated,Optional` explain this
 
 6) what are sequential chains
+
+7) ![alt text](image.png)
+

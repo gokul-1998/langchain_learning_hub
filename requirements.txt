@@ -8,3 +8,4 @@ sentence-transformers
 langchain_huggingface
 faiss-cpu
 pypdf
+bs4

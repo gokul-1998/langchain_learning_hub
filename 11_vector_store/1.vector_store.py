@@ -28,7 +28,7 @@ metadata={"team": "Mumbai Indians"}
 )
 
 doc5 = Document(
-page_content="Ravindra Jadeja is a dynamic all-rounder who contributes with both bat and ball. Representing Chennai Super Kings, his quick fielding and match-winning performances make him a key player.",
+page_content="Ravindra Jadeja is a dynamic all-rounder who contributes with both bat and bowl. Representing Chennai Super Kings, his quick fielding and match-winning performances make him a key player.",
 metadata={"team": "Chennai Super Kings"}
 )
 
@@ -44,13 +44,18 @@ vector_store=Chroma(
 
 vector_store.add_documents(docs)
 
-vector_store.get(include=['embeddings','documents','metadata'])
+vector_store.get(include=['embeddings','documents','metadatas'])
 
 query="who among these are bowlers?"
 
 result=vector_store.similarity_search(
     query=query,
-    n=3
+    k=3
+)
+
+result=vector_store.similarity_search_with_score(
+    query=query,
+    k=3
 )
 
 print(result)

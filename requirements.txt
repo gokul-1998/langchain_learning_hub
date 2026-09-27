@@ -10,3 +10,4 @@ faiss-cpu
 pypdf
 bs4
 langchain_chroma
+wikipedia

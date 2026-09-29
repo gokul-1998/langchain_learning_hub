@@ -13,4 +13,12 @@ prompt=chat_template.invoke({
     "topic":"wormhole"
 })
 
+prompt=chat_template.invoke({
+    'domain':"full stack development",
+    "topic":"caching"
+})
+
 print(prompt)
+
+
+

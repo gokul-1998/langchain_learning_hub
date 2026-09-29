@@ -1,1 +1,2 @@
 - if i say `my name is gokul` and in next convo as `what is my name` it will forget because we are not providing the convo to ai by storing it somewhere
+    

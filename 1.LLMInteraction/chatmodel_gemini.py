@@ -1,4 +1,5 @@
 from langchain_google_genai import ChatGoogleGenerativeAI
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -9,3 +10,4 @@ prompt="My name is Abhishek, what is your name?"
 
 result=model.invoke(prompt)
 print(result)
+
